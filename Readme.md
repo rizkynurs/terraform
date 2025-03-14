@@ -11,6 +11,11 @@ This document provides instructions on how to use Terraform commands for initial
 terraform init
 ```
 
+### Validate Config Terraform
+```bash
+terraform validate
+```
+
 ### Plan Terraform Changes
 ```bash
 terraform plan
