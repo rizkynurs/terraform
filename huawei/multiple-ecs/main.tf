@@ -33,7 +33,7 @@ resource "huaweicloud_compute_instance" "vm" {
 
   network {
     uuid = data.huaweicloud_vpc_subnet.mynet.id
-    fixed_ip_v4 = "10.250.0.8${count.index + 7}" #mulai dari 0.87
+    fixed_ip_v4 = "10.250.0.8${count.index + 7}" #start from 0.87
   }
 
   tags = {
