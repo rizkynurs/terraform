@@ -14,6 +14,11 @@ data "huaweicloud_vpc_subnet" "mynet" {
   name = var.subnet_name
 }
 
+resource "huaweicloud_compute_keypair" "ssh_key" {
+  name       = "my-ssh-key"            # Key pair name
+  public_key = file("~/.ssh/id_rsa.pub") # Path to your local SSH public key
+}
+
 # VM Instance Resource
 resource "huaweicloud_compute_instance" "vm" {
   count              = 2
@@ -36,6 +41,16 @@ resource "huaweicloud_compute_instance" "vm" {
   }
 
   enterprise_project_id = var.project["core-service"].id
+
+  # Use the key pair created in Terraform
+  key_pair = huaweicloud_compute_keypair.ssh_key.name
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      source /Users/rizky/ansible-env/bin/activate
+      ansible-playbook -i "${self.access_ip_v4}," /Users/rizky/sky-cloud/ansible/playbook/preinstall-enhance.yml --extra-vars "ansible_host=${self.access_ip_v4} ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa"
+    EOT
+  }
 }
 
 # Adding an EVS Disk 

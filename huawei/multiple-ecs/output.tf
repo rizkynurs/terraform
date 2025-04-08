@@ -16,8 +16,8 @@
 output "instances" {
   value = {
     for instance in huaweicloud_compute_instance.vm[*] :
-    instance.id => {
-      name        = instance.name
+    instance.name => {
+      id          = instance.id
       ipv4        = instance.network[0].fixed_ip_v4
       flavor_name = instance.flavor_id
       # Add more fields as needed (e.g., status, flavor)

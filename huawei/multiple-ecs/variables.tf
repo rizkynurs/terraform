@@ -107,3 +107,15 @@ variable "subnet_name" {
   type        = string
   default     = "subnet-datacore-service"
 }
+
+variable "ssh_key_name" {
+  description = "The name of the SSH key pair"
+  type        = string
+  default     = "my-ssh-key"
+}
+
+variable "ssh_private_key_path" {
+  description = "The path to the private SSH key"
+  type        = string
+  default     = "~/.ssh/id_rsa"
+}
