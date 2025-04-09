@@ -56,7 +56,7 @@ resource "huaweicloud_compute_instance" "vm" {
   # Use file provioning to run a script on the remote instance
   # Uncomment the following block if you want to use file provisioning
   # provisioner "file" {
-  #   source      = "/Users/rizky/sky-cloud/terraform/huawei/multiple-ecs/config/preinstall.sh"  # Path to your local script file
+  #   source      = "config/preinstall.sh"  # Path to your local script file
   #   destination = "/tmp/preinstall.sh"  # Location on the remote instance
 
   #   connection {
